@@ -34,8 +34,6 @@ app.set("view engine", "ejs");
 //-----------------------------------
 // API REQUESTS/ROUTES
 //-----------------------------------
-// capturing the form input
-
 
 // homepage where the search form lives
 app.get("/", (req, res) => {
@@ -66,15 +64,11 @@ app.get("/results", (req, res) => {
         // body
          var parsedBody = JSON.parse(body);
          
-         // render results.ejs
+         // render results.ejs and pass in variables
          res.render("results", {jobs: parsedBody,
                                 description: jobDescription,
                                 location: jobLocation
                                });
     });
 });
-
-//-----------------------------------
-// ROUTES
-//-----------------------------------
 
