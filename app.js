@@ -28,15 +28,11 @@ app.listen(process.env.PORT, process.env.IP, function(){
 // set Styles location
 app.use(express.static("public"));
 
-
+// set view engine to .ejs
+app.set("view engine", "ejs");
 
 //-----------------------------------
 // API REQUESTS
-//-----------------------------------
-
-
-//-----------------------------------
-// ROUTES
 //-----------------------------------
 
 app.get("/results", (req, res) => {
@@ -51,3 +47,8 @@ app.get("/results", (req, res) => {
          res.send(parsedBody[0]);
     });
 });
+
+//-----------------------------------
+// ROUTES
+//-----------------------------------
+
