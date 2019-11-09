@@ -45,8 +45,17 @@ app.get("/", (req, res) => {
 
 // results is where the search results are rendered
 app.get("/results", (req, res) => {
+    
+    // capturing form inputs to variables
     var jobDescription = req.query.jobDescription;
-    var url = "https://jobs.github.com/positions.json?search=" + jobDescription;
+    var jobLocation = req.query.jobLocation;
+    
+    
+  //  https://jobs.github.com/positions.json?description=python&location=new+york
+    
+    
+    // constructing URL for API request
+    var url = "https://jobs.github.com/positions.json?description=" + jobDescription + "&location=" + jobLocation;
     
     request(url, (error, response, body) => {
         
@@ -58,7 +67,10 @@ app.get("/results", (req, res) => {
          var parsedBody = JSON.parse(body);
          
          // render results.ejs
-         res.render("results", {jobs: parsedBody});
+         res.render("results", {jobs: parsedBody,
+                                description: jobDescription,
+                                location: jobLocation
+                               });
     });
 });
 

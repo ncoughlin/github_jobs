@@ -1,9 +1,14 @@
 <h1>Job Search Results:</h1>
 
+<p> You Search For: <strong><%= description %></strong> In: <strong><%= location %></strong><p>
+
 <% jobs.forEach(function(job) { %>
-<ul>
-    <li><%= job.title %></li>
-</ul>    
+
+<p><h2>Description: <%= job.title %></h2></p>
+<p><h3>Location: <%=job.location %></h3></p>
+<p>Company: <%=job.company %></p>
+<p>URL: <a href="<%=job.url %>"><%=job.url %></a></p>
+   
 <% }); %>
 
 
