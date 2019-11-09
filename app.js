@@ -32,11 +32,23 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 //-----------------------------------
-// API REQUESTS
+// API REQUESTS/ROUTES
 //-----------------------------------
+// capturing the form input
 
+
+// homepage where the search form lives
+app.get("/", (req, res) => {
+    
+    res.render("search");
+});
+
+// results is where the search results are rendered
 app.get("/results", (req, res) => {
-    request('https://jobs.github.com/positions.json?search=node', (error, response, body) => {
+    var jobDescription = req.query.jobDescription;
+    var url = "https://jobs.github.com/positions.json?search=" + jobDescription;
+    
+    request(url, (error, response, body) => {
         
         // error
          console.log('error:', error); 
@@ -44,6 +56,8 @@ app.get("/results", (req, res) => {
          console.log('statusCode:', response && response.statusCode); 
         // body
          var parsedBody = JSON.parse(body);
+         
+         // render results.ejs
          res.render("results", {jobs: parsedBody});
     });
 });
