@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "an exercise to pull information from the GitHub Jobs API",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
