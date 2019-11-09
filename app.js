@@ -35,21 +35,22 @@ app.set("view engine", "ejs");
 // API REQUESTS/ROUTES
 //-----------------------------------
 
-// homepage where the search form lives
+// render homepage in root url
 app.get("/", (req, res) => {
     
-    res.render("search");
+    res.render("homepage");
 });
 
 // results is where the search results are rendered
-app.get("/results", (req, res) => {
+app.get("partials/results", (req, res) => {
     
     // capturing form inputs to variables
     var jobDescription = req.query.jobDescription;
     var jobLocation = req.query.jobLocation;
     
     
-  //  https://jobs.github.com/positions.json?description=python&location=new+york
+  // sample format of API URL
+  // https://jobs.github.com/positions.json?description=python&location=new+york
     
     
     // constructing URL for API request
@@ -65,7 +66,7 @@ app.get("/results", (req, res) => {
          var parsedBody = JSON.parse(body);
          
          // render results.ejs and pass in variables
-         res.render("results", {jobs: parsedBody,
+         res.render("partials/results", {jobs: parsedBody,
                                 description: jobDescription,
                                 location: jobLocation
                                });
