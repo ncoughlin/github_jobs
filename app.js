@@ -44,7 +44,7 @@ app.get("/results", (req, res) => {
          console.log('statusCode:', response && response.statusCode); 
         // body
          var parsedBody = JSON.parse(body);
-         res.send(parsedBody[0]);
+         res.render("results", {jobs: parsedBody});
     });
 });
 
